@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: ifconfig-svc
+  labels:
+    app: ifconfig
+    service: ifconfig
+spec:
+  ports:
+  - port: 5000
+    name: http
+  selector:
+    app: ifconfig
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ifconfig-dep
+  labels:
+    app: ifconfig
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ifconfig
+  template:
+    metadata:
+      labels:
+        app: ifconfig
+    spec:
+      containers:
+      - name: ifconfig
+        image: docker.io/liujian82/flask-ifconfig:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 5000
