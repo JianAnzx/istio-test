@@ -4,10 +4,10 @@ metadata:
   name: ifconfig-gateway
 spec:
   selector:
-    istio: ingressgateway # use istio default controller
+    istio: ingressgateway # use istio default controller, this selector is to select the pod running as the proxy.
   servers:
   - port:
-      number: 80
+      number: 80 # This port is istio-ingressgateway svc defined port. It will be used by Cloud load balance to send the traffic. for example 80. then 35.197.162.187:80 is svc address. 443 will be 35.197.162.187:443
       name: http
       protocol: HTTP
     hosts:
