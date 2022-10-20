@@ -34,3 +34,6 @@ spec:
         imagePullPolicy: Always
         ports:
         - containerPort: 5000
+      - name: netswissknife
+        image: liujian82/netswissknife
+        command: ["/bin/sh", "-ec", "while :; do echo '.'; sleep 5 ; done"]
